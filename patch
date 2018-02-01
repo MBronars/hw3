@@ -1,0 +1,58 @@
+    function distance(x,y)
+    {
+     return sqrt((x-mid)^2 + (y-mid)^2)
+      
+      
+    }
+    
+    
+function yourPatch(x, y) {
+  noFill();
+  stroke(0);
+  colorMode(HSB);
+  rect(x, y, 300, 300);
+  mid = 150;
+  strokeWeight(4);
+  count = 1000;
+  while(count > 0){
+    new_x = mouseX + random((-mouseX/4), (300-mouseX)/4);
+    new_y = mouseY + random((-mouseY/4), (300-mouseY)/4);
+    
+    
+    ratio = dist(new_x, new_y, x+150, y+150)/(150*sqrt(2));
+    if (ratio > 1)
+    {
+     ratio = ratio - int(ratio); 
+    }
+    if (new_x > x+ 300)
+    {
+      new_x = x+300;
+    }
+    if (new_x < x)
+    {
+      
+     new_x = x; 
+    }
+    if (new_y > y+ 300)
+    {
+      new_y = y+300;
+    }
+    if (new_y < y)
+    {
+      
+     new_y = y; 
+    }
+    
+    
+    stroke(360*ratio, 100, 100);
+    line(mid, mid, new_x, new_y); 
+    count = count-1;
+
+  }
+}
+
+background(255);
+yourPatch(0, 0); // draw patch at upper-left
+
+background(255);
+yourPatch(width-301, height-301); // draw patch at lower-right
